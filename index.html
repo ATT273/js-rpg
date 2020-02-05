@@ -1,0 +1,177 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/layout_style.css">
+    <title>JS RPG</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet"> 
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Character Info panel -->
+        <div class="character-info">
+            <h3>Character Info</h3>
+            <div class="general-info">
+                <div class="character-avatar">
+                    <img src="images/character/main_char.jpg" alt="char_img">
+                </div>
+                <div class="info">
+                    <div class="name"></div>
+                    <div class="char-class"></div>
+                </div>
+            </div>
+            <div class="detail">
+                <h4>Detail stats</h4>
+                <div class="stats-block">
+                </div>
+                <div class="items-block">
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gameplay panel -->
+        <div class="game">
+            <!-- Create character screen -->
+            <div class="create-character">
+                <h1 class="create-title">Create Your Character</h1>
+                <div>
+                    <div class="name-input">
+                        <label for="name"><h3>Your name is: </h3></label>
+                        <input type="text" id="character_name" placeholder="What is your name? ">
+                    </div>
+                    <h3>Select your class</h3>
+                    <div class="class_select">
+                        <div class="class">
+                            <button id="warrior" class="btn detail__button">Detail</button>
+                            <img src="images/classes/warrior.jpg" alt="warrior">
+                            <div>    
+                                <input  type="radio" name="class_select" value="warrior" checked>
+                                <label for="class_select">Warrior</label>
+                            </div>
+                        </div>
+                        <div class="class">
+                            <button id="mage" class="btn detail__button">Detail</button>
+                            <img src="images/classes/mage.jpg" alt="mage">
+                            <div>    
+                                <input  type="radio" name="class_select" value="mage">
+                                <label for="class_select">Mage</label>
+                            </div>
+                        </div>
+                        <div class="class">
+                            <button id="assassin" class="btn detail__button">Detail</button>
+                            <img src="images/classes/assassin.jpg" alt="assassin">
+                            <div>
+                                <input  type="radio" name="class_select" value="assassin">
+                                <label for="class_select">Assassin</label>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Set your stats point</h3>
+                    <div class="set-point">
+                        <p>You have 12 points to assign to your stats</p>
+                        <div class="stats-input">
+                            <div class="stat">
+                                <label for="attack">Attack: </label>
+                                <input type="number" name="stat_attack" id="stat_attack">
+                            </div>
+                            <div class="stat">
+                                <label for="defense">Defense: </label>
+                                <input type="number" name="stat_attack" id="stat_defense">
+                            </div>
+                            <div class="stat">
+                                <label for="speed">Speed: </label>
+                                <input type="number" name="stat_attack" id="stat_speed">
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn-create btn bg-red">Create</button>
+                </div>
+            </div>
+            <!-- Intro screen -->
+            <div class="intro">
+                <p>Hello, my hero.<br>Welcome to the mystic world. Your adventure will begin after you click that Play! button. <br> Are you ready for the adventure? </p>
+                <button class="btn bg-yellow btn-play">Play!</button>
+            </div>
+            <!-- Game events screen -->
+            <div class="game-event">
+                <h1 class="event-name">Event</h1>
+                <div class="event-detail">
+
+                    <!-- Loot event -->
+                    <div class="loot">
+                        <div class="loot-item">
+                            <img src="images/items/sword.png" alt="sword_img">
+                            <div class="item-detail">
+                                <p class="item-name"></p>
+                                <p class="item-price"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Shop event -->
+                    <div class="shop">
+                        
+                    </div>
+
+                    <!-- Fight event -->
+                    <div class="fight">
+                        <div class="character">
+                            <h3 class="name"></h3>
+                            <img src="" alt="main_img">
+                            <div class="your-stats">
+                                <p class="hp"></p>
+                                <p class="stm"></p>
+                                <p class="atk"></p>
+                                <p class="def"></p>
+                                <p class="spd"></p>
+                            </div>
+                        </div>
+                        <div class="enemy">
+                            <h3 class="name"></h3>
+                            <img src="" alt="enemy_img">
+                            <div class="enemy-stats">
+                                <p class="hp"></p>
+                                <p class="stm"></p>
+                                <p class="atk"></p>
+                                <p class="def"></p>
+                                <p class="spd"></p>
+                            </div>
+                        </div>
+                        <div class="character-action">
+                           <button class="btn bg-green" id="atk-btn">Attack</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Help panel -->
+        <div class="help">
+            <h3 class="title">Help</h3>
+            <div class="detail">
+                <h3 class="selected-class"></h3>
+                <div class="skill-detail"></div>
+            </div>
+        </div>
+    </div>
+    <div class="alert">
+        <div class="alert-box">
+            <h3 class="message"></h3>
+            <button class="btn close-alert bg-red">OK</button>
+        </div>
+    </div>
+    <div class="btn-gg">
+        <button id="aleee">alert</button>
+    </div>
+    <script type="module" src="js/data.js"></script>
+    <script type="module" src="js/calculate.js"></script>
+    <script type="module" src="js/game.js"></script>
+</body>
+</html>

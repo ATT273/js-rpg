@@ -1,0 +1,374 @@
+:root {
+    --green:#40bf79;
+    --red: #c64139;
+    --yellow:#D5CE2A;
+    --dark-bg: #3b3b3b;
+    --light-bg: #8a8a8a;
+}
+
+/* ====================
+        Reset
+==================== */
+body {
+    background-color: var(--dark-bg);
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+input[type="text"],
+input[type="number"] {
+    height: 2rem;
+    border-radius: 3px;
+    border: 1px solid #d0d0d0;
+    padding: 5px 5px;
+}
+h1,h2,h3,h4,h5,p {
+    margin: 0;
+}
+
+/* ====================
+    Common class
+==================== */
+.btn {
+    min-height: 2.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.bg-red {
+    background-color: var(--red);
+}
+
+.bg-green {
+    background-color: var(--green);
+}
+
+.bg-yellow {
+    background-color: var(--yellow);
+}
+/* display */
+
+.display-b {
+    display: block !important;
+}
+.display-f {
+    display: flex !important;
+}
+
+.display-n {
+    display: none !important;
+}
+
+/* ====================
+        Styles
+==================== */
+
+.wrapper {
+    display: flex;
+}
+/* ====================
+    Gameplay Panel
+==================== */
+.game {
+    flex: 1;
+    margin: 10px;
+}
+
+/* Create character */
+.create-character,
+.game-event,
+.intro {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.75);
+}
+
+.create-character h3,
+.create-character .set-point p {
+    margin-bottom: 10px;
+}
+.create-character .create-title {
+    margin-bottom: 20px;
+}
+
+.name-input {
+    margin-bottom: 20px;
+}
+
+.name-input h3 {
+    display: inline;
+}
+
+.class_select {
+    display: flex;
+}
+
+.class_select .class {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+.class_select .class .detail__button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--green);
+    color: white;
+    border: none;
+    border-radius: 3px;
+}
+
+.class_select .class img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.stats-input {
+    display: flex;
+}
+
+.stats-input .stat {
+    margin-right: 20px;
+}
+.stats-input .stat input {
+    width: 50px;
+    -moz-appearance:textfield;
+    -webkit-appearance:textfield;
+}
+
+.btn-create {
+    margin: 20px auto;
+    display: block;
+    width: 150px;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+/* intro screen */
+.intro {
+    display: none;
+    padding: 70px;
+    height: 450px;
+    background-image: linear-gradient(45deg, #673BC4, #AC3BC4);
+    color: whitesmoke;
+    
+}
+.intro p {
+    font-size: 2rem;
+}
+
+.intro .btn-play {
+    display: block;
+    width: 100px;
+    font-size: 1.5rem;
+    margin: 10px auto;
+}
+/* Game event  screen*/
+.game-event {
+    display: none;
+}
+
+.loot {
+    display: none;
+}
+
+.shop {
+    display: none;
+}
+
+/* Fight board */
+.fight {
+    display: none;
+    position: relative;
+    justify-content: space-between;
+}
+
+/* Main character */
+.character {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.character .name,
+.enemy .name  {
+    display: block;
+    flex-basis: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+    border-bottom: 1px solid black;
+}
+
+.character img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.character-action {
+    position: absolute;
+    bottom: -150px;
+    left: 0;
+    width: 450px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.character-action button {
+    flex-basis: calc(50% - 20px);
+    margin: 10px;
+}
+
+/* Enemy board */
+.enemy {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.enemy img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin-right: 20px;
+}
+/* ====================
+        Help Panel
+==================== */
+
+.help {
+    width: 300px;
+    padding: 10px;
+    margin: 10px;
+    background-color: var(--light-bg);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+}
+
+.title {
+    margin-bottom: 10px;
+}
+
+.selected-class {
+    margin-bottom: 10px;
+    border-bottom: 1px solid black;
+    font-size: 1.5rem;
+}
+
+.help .skill-name {
+    font-weight: bold;
+    font-style: oblique;
+}
+.help .skill-detail {
+    margin-bottom: 10px;
+}
+.help .skill-detail .stats-block {
+    display: flex;
+    padding-left: 10px;
+}
+.help .skill-detail .stats-block .stat {
+    margin-right: 10px;
+}
+/* ====================
+    Character info Panel
+==================== */
+.character-info {
+    width: 300px;
+    height: 500px;
+    margin: 10px;
+    padding: 10px;
+    background-color: var(--light-bg);
+    border-radius: 10px;
+}
+
+.character-info h3 {
+    margin-bottom: 10px;
+}
+
+.character-info .general-info {
+    display: flex;
+}
+
+.character-info .general-info .character-avatar,
+.character-info .general-info .info {
+    padding: 10px;
+}
+
+.character-info .general-info .info .name {
+    font-size: 2rem;
+    font-weight: bold;
+}
+.character-info .general-info .character-avatar img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+.character-info .detail {
+    display: flex;
+    flex-wrap: wrap;
+}
+.character-info .detail h4 {
+    display: block;
+    flex-basis: 100%;
+    border-bottom: 2px solid black;
+}
+
+.character-info .detail .stats-block,
+.character-info .detail .items-block {
+    flex-basis: 50%;
+}
+
+.character-info .detail .stats-block .stat {
+    margin-bottom: 10px;
+}
+
+.character-info .detail .items-block {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.character-info .detail .items-block .item {
+    margin: 5px;
+    flex-basis: calc(50% - 10px);
+    background-color: rgba(0, 0, 0, .5);
+}
+
+
+/* alert box */
+.alert {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: 99;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.alert-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 200px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.alert-box .message {
+    text-align: center;
+    padding: 10px;
+}
+.alert-box .close-alert {
+    display: block;
+    width: 50%;
+    color: white;
+}
