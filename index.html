@@ -105,7 +105,7 @@
                 <div class="event-detail">
 
                     <!-- Loot event -->
-                    <div class="loot">
+                    <div class="loot-board">
                         <div class="loot-item">
                             <img src="images/items/sword.png" alt="sword_img">
                             <div class="item-detail">
@@ -116,37 +116,43 @@
                     </div>
 
                     <!-- Shop event -->
-                    <div class="shop">
+                    <div class="shop-board">
                         
                     </div>
 
                     <!-- Fight event -->
-                    <div class="fight">
-                        <div class="character">
-                            <h3 class="name"></h3>
-                            <img src="" alt="main_img">
-                            <div class="your-stats">
-                                <p class="hp"></p>
-                                <p class="stm"></p>
-                                <p class="atk"></p>
-                                <p class="def"></p>
-                                <p class="spd"></p>
+                    <div class="fight-board">
+                        <div class="fight">
+                            <div class="character">
+                                <h3 class="name"></h3>
+                                <img src="" alt="player_img">
+                                <div class="player-stats">
+                                    <p class="hp"></p>
+                                    <p class="stm"></p>
+                                    <p class="atk"></p>
+                                    <p class="def"></p>
+                                    <p class="spd"></p>
+                                </div>
+                            </div>
+                            <div class="enemy">
+                                <h3 class="name"></h3>
+                                <img src="" alt="enemy_img">
+                                <div class="enemy-stats">
+                                    <p class="hp"></p>
+                                    <p class="stm"></p>
+                                    <p class="atk"></p>
+                                    <p class="def"></p>
+                                    <p class="spd"></p>
+                                </div>
                             </div>
                         </div>
-                        <div class="enemy">
-                            <h3 class="name"></h3>
-                            <img src="" alt="enemy_img">
-                            <div class="enemy-stats">
-                                <p class="hp"></p>
-                                <p class="stm"></p>
-                                <p class="atk"></p>
-                                <p class="def"></p>
-                                <p class="spd"></p>
-                            </div>
+                        <div class="combat-log">
+                            <h3>Combat Logs</h3>
                         </div>
                         <div class="character-action">
-                           <button class="btn bg-green" id="atk-btn">Attack</button>
+                            <button class="btn bg-green" id="atk-btn">Attack</button>
                         </div>
+                        
                     </div>
                 </div>
             </div>
@@ -167,11 +173,8 @@
             <button class="btn close-alert bg-red">OK</button>
         </div>
     </div>
-    <div class="btn-gg">
-        <button id="aleee">alert</button>
-    </div>
     <script type="module" src="js/data.js"></script>
-    <script type="module" src="js/calculate.js"></script>
+    <!-- <script type="module" src="js/calculate.js"></script> -->
     <script type="module" src="js/game.js"></script>
 </body>
 </html>

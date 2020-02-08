@@ -71,11 +71,16 @@ const data = {
     enemies: [
         {
             name: 'tiger',
-            hp: 100,
-            atk: 10,
-            def:10,
-            stm: 100,
-            spd: 12,
+            stats: {
+                hp: 10,
+                atk: 10,
+                def:3,
+                stm: 100,
+                spd: 12,    
+            },
+            class: {
+                skills:''
+            },
             image: 'images/enemies/tiger.jpg'
         }
     ],

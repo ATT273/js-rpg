@@ -1,15 +1,16 @@
 import { data } from './data.js';
-// import Calculator from './calculate.js';
+import Rules from './rules.js';
 // Game board
 const eventBoard = document.querySelector('.game-event');
 const createBoard = document.querySelector('.create-character');
 const introScreen = document.querySelector('.intro');
-const lootBoard = document.querySelector('.loot');
-const shopBoard = document.querySelector('.shop');
-const fightBoard = document.querySelector('.fight');
+const lootBoard = document.querySelector('.loot-board');
+const shopBoard = document.querySelector('.shop-board');
+const fightBoard = document.querySelector('.fight-board');
 const charInfo = document.querySelector('.character-info');
-const alert = document.querySelector('.alert');
-const alertMsg = alert.querySelector('.alert-box .message');
+const alertBox = document.querySelector('.alert');
+const alertMsg = alertBox.querySelector('.alert-box .message');
+const rules = new Rules();
 
 // Action Buttons
 const buttonPlay = document.querySelector('.btn-play');
@@ -40,7 +41,9 @@ const character = {
     }
 }
 const game_event = {
-    data: ''
+    data: '',
+    turn: 0,
+    combatLogs:''
 }
 
 // ==============================//
@@ -64,7 +67,7 @@ const createCharacter = () => {
                     }
                 }
                 setStats(atk, def, spd);
-                console.log(character);
+                // console.log(character);
             } else {
                 setAlert('You can not assign more than 12 points');
                 throw new Error("Error: You can not assign more than 12 points");
@@ -81,6 +84,7 @@ const createCharacter = () => {
     
 }
 
+// Show/ Hide functions
 const showClassDetail = (selectedClass) => {
     const skills = data.classes[selectedClass].skills;
     const skillDetail = document.querySelector('.skill-detail');
@@ -114,6 +118,24 @@ const showCharacterInfo = () => {
     }
 }
 
+const showFightBoard = () => {
+    lootBoard.classList.remove('display-f');
+    shopBoard.classList.remove('display-f');
+    fightBoard.classList.add('display-b');
+}
+
+const showShopBoard = () => {
+    lootBoard.classList.remove('display-f');
+    shopBoard.classList.add('display-f');
+    fightBoard.classList.remove('display-b');
+}
+
+const showLootBoard = () => {
+    lootBoard.classList.add('display-f');
+    shopBoard.classList.remove('display-f');
+    fightBoard.classList.remove('display-b');
+}
+
 const setStats = (newAtk, newDef, newSpd) => {
     character.stats.atk = newAtk;
     character.stats.def = newDef;
@@ -121,14 +143,13 @@ const setStats = (newAtk, newDef, newSpd) => {
 }
 
 // Fight event
+// Setup functions
 const setUpFightBoard = () => {
-    const title = eventBoard.querySelector('.event-name');
-    title.innerText = 'Fight';
-    lootBoard.classList.remove('display-f');
-    shopBoard.classList.remove('display-f');
-    fightBoard.classList.add('display-f');
+    // const title = eventBoard.querySelector('.event-name');
     setUpEnemy();
-    setUpMainCharacter();
+    setUpPlayerCharacter();
+    setTurnOrder(character.stats.spd, game_event.data.spd);
+    showFightBoard();
 }
 
 const setUpStats = () => {
@@ -141,7 +162,7 @@ const setUpStats = () => {
     // main character
     const image = eventBoard.querySelector('.character img');
     const yourName = fightBoard.querySelector('.character .name');
-    const yourStats = fightBoard.querySelector('.event-detail .your-stats');
+    const yourStats = fightBoard.querySelector('.event-detail .player-stats');
     const yourHP = yourStats.querySelector('.hp');
     const yourATK = yourStats.querySelector('.atk');
     const yourDEF = yourStats.querySelector('.def');
@@ -155,7 +176,7 @@ const setUpStats = () => {
     image.src = img;
 }
 
-const setUpActionButton = () => {
+const setUpActionButtons = () => {
     const actionBtnGrp = fightBoard.querySelector('.character-action') ;
     for (let i = 0; i < character.class.skills.length; i++) {
         const skill = character.class.skills[i];
@@ -163,23 +184,25 @@ const setUpActionButton = () => {
     }
 }
 
-const setUpMainCharacter = () => {
+const setUpPlayerCharacter = () => {
     setUpStats();
-    setUpActionButton();
+    setUpActionButtons();
 }
 
 const setUpEnemy = () => {
+
+    // random enemy - coming soon
+    // init stats
     game_event.data = data.enemies[0];
     const enemy = game_event.data;
-    console.log(enemy);
     const name = enemy.name;
-    const hp = enemy.hp;
-    const atk = enemy.atk;
-    const def = enemy.def;
-    const spd = enemy.spd;
+    const hp = enemy.stats.hp;
+    const atk = enemy.stats.atk;
+    const def = enemy.stats.def;
+    const spd = enemy.stats.spd;
     const img = enemy.image;
     
-    // enemy
+    // display enemy stats
     const image = eventBoard.querySelector('.enemy img');
     const enemyName = eventBoard.querySelector('.enemy .name');
     const enemyStats = eventBoard.querySelector('.event-detail .enemy-stats');
@@ -196,6 +219,71 @@ const setUpEnemy = () => {
     image.src = img;   
 }
 
+const setTurnOrder = (playerSpd, enemySpd) => {
+    if (playerSpd >= enemySpd) {
+        game_event.turn = 0;
+    } else {
+        game_event.turn = 1;
+    }
+}
+
+
+const showTurnCombatLogs = () => {
+    const combatLogs = fightBoard.querySelector('.combat-log');
+    if (game_event.turn == 0) {
+        const para = document.createElement("p");
+        const turnLog = document.createTextNode('Your turn...');
+        para.appendChild(turnLog);
+        combatLogs.appendChild(para);
+        combatLogs.scrollTop = combatLogs.scrollHeight;
+    } else if (game_event.turn == 1) {
+        const para = document.createElement("p");
+        const turnLog = document.createTextNode('Enemy\'s turn...');
+        para.appendChild(turnLog);
+        combatLogs.appendChild(para);
+        combatLogs.scrollTop = combatLogs.scrollHeight;
+    }
+}
+
+const showActionsCombatLogs = () => {
+    const combatLogs = fightBoard.querySelector('.combat-log');
+    const para = document.createElement("p");
+    const turnLog = document.createTextNode(game_event.combatLogs);
+    para.appendChild(turnLog);
+    combatLogs.appendChild(para);
+    combatLogs.scrollTop = combatLogs.scrollHeight;
+}
+
+const showResultCombatLog = (result) => {
+    const combatLogs = fightBoard.querySelector('.combat-log');
+    const para = document.createElement("h4");
+    const turnLog = document.createTextNode(result);
+    para.appendChild(turnLog);
+    combatLogs.appendChild(para);
+    combatLogs.scrollTop = combatLogs.scrollHeight;
+}
+const enemyTurn = () => {
+    rules.normalAttack(game_event.data, character, game_event);
+    showActionsCombatLogs();
+    setUpStats();
+    winCondition();
+
+    setTimeout(function (){
+        game_event.turn = 0;
+        takeTurn(game_event.turn);
+    }, 1000);
+}
+const takeTurn = (turn) => {
+    if (turn == 1) {
+        showTurnCombatLogs();
+        setTimeout(function(){ enemyTurn(); },1000);
+    } else if (turn == 0) {
+        showTurnCombatLogs();
+        actionButtons.classList.add('display-f');
+    }
+    
+}
+
 // Loot event
 const setUpLoot = () => {
     randomIndex(data.loots, 'lootItem');
@@ -204,9 +292,7 @@ const setUpLoot = () => {
     itemName.innerText = data.loots[lootIndex].name;
     itemPrice.innerText = data.loots[lootIndex].price;
 
-    lootBoard.classList.add('display-f');
-    shopBoard.classList.remove('display-f');
-    fightBoard.classList.remove('display-f');
+    showLootBoard();
 }
 
 
@@ -214,7 +300,7 @@ const setUpLoot = () => {
 const setUpShop = () => {
     const shopDiv = document.querySelector('.shop');
     const shop = data.shops[0];
-    console.log(shop);
+    // console.log(shop);
     shop.items.forEach(item => {
         shopDiv.innerHTML += '<div class="shop-item"><p class="item-name">'
                             +item.name+
@@ -223,9 +309,7 @@ const setUpShop = () => {
                             '</p></div>';
     });
 
-    lootBoard.classList.remove('display-f');
-    shopBoard.classList.add('display-f');
-    fightBoard.classList.remove('display-f');
+    showShopBoard();
 }
 
 const randomIndex = (targetArray, targetName) => {
@@ -240,12 +324,14 @@ const randomIndex = (targetArray, targetName) => {
 
 const getEvent = () => {
     randomIndex([0,1,2], 'event');
-    console.log(eventType);
+    // console.log(eventType);
     const title = eventBoard.querySelector('.event-name');
     switch (eventType) {
         case 0:
-            console.log('run in here');
+            // console.log('run in here');
+            title.innerText = 'Fight';
             setUpFightBoard();
+            startRound();
             break;
         case 1:
             title.innerText = 'loot',
@@ -260,9 +346,13 @@ const getEvent = () => {
     }
 }
 
+
+const startRound = () => {
+    takeTurn(game_event.turn);
+}
 const setAlert = (msg) => {
     alertMsg.innerText = msg;
-    alert.classList.add('display-b');
+    alertBox.classList.add('display-b');
 }
 
 // ==============================//
@@ -315,16 +405,36 @@ heroClasses.addEventListener('click', e => {
 
 });
 
+const winCondition = () => {
+    if (game_event.data.stats.hp == 0) {
+        showResultCombatLog('Congratulation! You have defeated the enemy!');
+        throw "player win!"
+    }
+    if (character.stats.hp == 0) {
+        showResultCombatLog('You have been defeated!');
+        throw "enemy win!"
+    }
+}
 // Click action buttons
 actionButtons.addEventListener('click', e => {
     const targetBtn = e.target.closest('button');
     if(!targetBtn) return;
 
     if (targetBtn.id == 'atk-btn') {
-        alert('hahaha');
+        
+        actionButtons.classList.remove('display-f');
+        rules.normalAttack(character, game_event.data, game_event);
+        showActionsCombatLogs();
+        setUpEnemy();
+        winCondition();
+        
+        setTimeout(function (){
+            game_event.turn = 1;
+            takeTurn(game_event.turn);
+        }, 1000);
     }
 });
 // close alert
 closeAlert.addEventListener('click', () => {
-    alert.classList.remove('display-b');
+    alertBox.classList.remove('display-b');
 })

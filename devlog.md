@@ -1,0 +1,6 @@
+# DEV LOGS
+## 5/2/2019
+    - add CREATE CHARACTER FEATURE
+
+## 8/2/2019
+    - add simple FIGHTING FEATURE
