@@ -72,16 +72,21 @@ h1,h2,h3,h4,h5,p {
 .game {
     flex: 1;
     margin: 10px;
+    height: 570px;
 }
 
 /* Create character */
 .create-character,
 .game-event,
 .intro {
-    padding: 20px;
+    padding: 10px;
+    height: 100%;
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.75);
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
 }
 
 .create-character h3,
@@ -173,9 +178,15 @@ h1,h2,h3,h4,h5,p {
 .game-event {
     display: none;
 }
-
+/* loot board */
 .loot-board {
     display: none;
+}
+
+.loot-item img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
 }
 
 .shop-board {
@@ -184,7 +195,7 @@ h1,h2,h3,h4,h5,p {
 
 /* Fight board */
 .fight-board {
-    display: block;
+    display: none;
 }
 
 .fight {
@@ -254,6 +265,7 @@ h1,h2,h3,h4,h5,p {
 
 .help {
     width: 300px;
+    height: 550px;
     padding: 10px;
     margin: 10px;
     background-color: var(--light-bg);
@@ -290,7 +302,7 @@ h1,h2,h3,h4,h5,p {
 ==================== */
 .character-info {
     width: 300px;
-    height: 500px;
+    height: 550px;
     margin: 10px;
     padding: 10px;
     background-color: var(--light-bg);

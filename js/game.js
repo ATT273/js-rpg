@@ -287,11 +287,16 @@ const takeTurn = (turn) => {
 // Loot event
 const setUpLoot = () => {
     randomIndex(data.loots, 'lootItem');
+    game_event.data = data.loots[lootIndex];
+    // console.log(game_event.data);
+    const lootItem = game_event.data;
     const itemName = document.querySelector('.loot-item .item-detail .item-name');
-    const itemPrice = document.querySelector('.loot-item .item-detail .item-price');
-    itemName.innerText = data.loots[lootIndex].name;
-    itemPrice.innerText = data.loots[lootIndex].price;
-
+    const itemStat = document.querySelector('.loot-item .item-detail .item-stat');
+    const itemImg = document.querySelector('.loot-item img');
+    itemImg.src = lootItem.image;
+    console.log(itemImg);
+    itemName.innerText = lootItem.name;
+    itemStat.innerText = `+ ${lootItem.amount} ${lootItem.affect}`;
     showLootBoard();
 }
 
@@ -317,7 +322,7 @@ const randomIndex = (targetArray, targetName) => {
     if(targetName == 'lootItem') {
         lootIndex = Math.floor(Math.random() * (max - 0 + 1))
     } else if (targetName == 'event') {
-        eventType = 0;
+        eventType = 1;
         // Math.floor(Math.random() * (max - 0 + 1));
     }
 }

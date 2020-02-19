@@ -87,22 +87,25 @@ const data = {
 
     loots: [
         {
-            name: 'potion',
+            name: 'small health potion',
             price: 5,
             affect: 'hp',
-            amount: 10
+            amount: 10,
+            image: 'images/items/potionHP.jpg'
         },
         {
-            name: 'sword',
+            name: 'rusty sword',
             price: 10,
             affect: 'atk',
-            amount: 7
+            amount: 7,
+            image: 'images/items/sword.png'
         },
         {
-            name: 'shield',
+            name: 'round shield',
             price: 9,
             affect: 'def',
-            amount: 8
+            amount: 8,
+            image: 'images/items/shield.jpg'
         }
     ],
 
